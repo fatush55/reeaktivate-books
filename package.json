@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=22.16.0 <23"
+    "node": ">=22.22.1 <23"
   },
   "scripts": {
     "lint": "eslint .",
@@ -13,7 +13,9 @@
     "format:check": "prettier --check .",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "lint:staged": "yarn lint-staged --concurrent false"
   },
   "dependencies": {
     "mobx": "^7.0.6",
@@ -22,6 +24,8 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.4",
     "@types/react": "^19.2.18",
@@ -35,6 +39,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "prettier": "^3.9.9",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",
