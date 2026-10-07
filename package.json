@@ -15,7 +15,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "prepare": "husky",
-    "lint:staged": "yarn lint-staged --concurrent false"
+    "lint:staged": "yarn lint-staged --concurrent false",
+    "lint:ci": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "mobx": "^7.0.6",
@@ -24,6 +25,8 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1",
     "@commitlint/cli": "^21.2.0",
     "@commitlint/config-conventional": "^21.2.0",
     "@eslint/js": "^10.0.1",
