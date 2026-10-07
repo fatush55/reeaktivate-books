@@ -1,0 +1,35 @@
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  width: fit-content;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-h);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.label:hover {
+  color: var(--accent);
+}
+
+.radio {
+  accent-color: var(--accent);
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
