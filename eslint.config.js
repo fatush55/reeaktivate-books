@@ -13,15 +13,29 @@ export default tseslint.config(
   },
   {
     files: ["**/*.{ts,tsx}"],
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+    ],
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-      mobx: mobx,
+      "mobx": mobx,
       "import-x": importX,
     },
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        describe: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        beforeAll: "readonly",
+        beforeEach: "readonly",
+        afterAll: "readonly",
+        afterEach: "readonly",
+        vi: "readonly",
+      },
     },
     settings: {
       "import-x/resolver": {
@@ -32,14 +46,20 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
 
       "no-console": ["error", { allow: ["debug", "warn", "error"] }],
 
       "mobx/missing-observer": "off",
       "mobx/no-anonymous-observer": "off",
 
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
 
       "@typescript-eslint/consistent-type-imports": [
         "error",
@@ -54,7 +74,13 @@ export default tseslint.config(
       "import-x/order": [
         "error",
         {
-          groups: ["builtin", "external", "internal", ["parent", "sibling", "index"], "type"],
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            ["parent", "sibling", "index"],
+            "type",
+          ],
           pathGroups: [
             {
               pattern: "react",

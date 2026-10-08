@@ -1,21 +1,33 @@
-/// <reference types="vitest" />
-import path from "path";
-
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@pages/..": path.resolve(__dirname, "./src/pages/.."),
+  test: {
+    globals: true,
+    environment: "node",
+    setupFiles: ["./testSetup.ts"],
+    include: ["src/**/*.spec.ts"],
+    exclude: ["node_modules", "dist", "src/**/*.tsx", "src/**/*.jsx"],
+    coverage: {
+      provider: "v8",
+      include: ["src/**/*.ts"],
+      exclude: [
+        "src/**/*.tsx",
+        "src/**/*.jsx",
+        "src/**/*.d.ts",
+        "src/**/types.ts",
+        "src/main.tsx",
+        "src/**/index.ts",
+        "src/mocks/**",
+      ],
+      thresholds: {
+        lines: 90,
+        functions: 90,
+        branches: 90,
+        statements: 90,
+      },
     },
   },
-  // test: {
-  //   globals: true,
-  //   environment: "jsdom",
-  //   setupFiles: "./src/shared/config/setupTests.ts",
-  // },
 });
