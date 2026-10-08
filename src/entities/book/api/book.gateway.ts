@@ -25,7 +25,7 @@ export class BookGateway {
     return response.json();
   }
 
-  async createBook(book: Omit<BookDto, "id">): Promise<BookDto> {
+  async createBook(book: Omit<BookDto, "id">): Promise<{ status: string }> {
     const response = await fetch(`${API_CONFIG.API_BASE}/${this.userName}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
